@@ -1,13 +1,13 @@
 import * as borsh from 'borsh';
 
-class CounterAccount {
+export class CounterAccount {
     count = 0;
     constructor({count} : {count:number}){
         this.count = count;
     }
 }
 
-const schema = {struct : {
+export const schema = {struct : {
     count : 'u32'
 }};
 
