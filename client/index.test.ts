@@ -5,11 +5,11 @@ import * as borsh from 'borsh';
 
 let adminAccount = Keypair.generate();
 let dataAccount = Keypair.generate();
-const programid = new PublicKey("BfpAUSM6eEgFK9BLxj7iZfNB5RUyCbA47CvmcutmEPmv"); // Deployed program Id
+const programid = new PublicKey("As133FMPHi5ivKmnehxUKRcKHoXLb2btH6PisnqmC6T"); // Deployed program Id
 
 test("Account is initialized",async()=>{
     //Airdrop
-    const connection = new Connection("http://127.0.0.1:8899"); // Local Chain
+    const connection = new Connection("https://api.devnet.solana.com");
     const airdrop = await connection.requestAirdrop(adminAccount.publicKey,1*LAMPORTS_PER_SOL);
     await connection.confirmTransaction(airdrop);
     const data = await connection.getAccountInfo(adminAccount.publicKey);
@@ -40,7 +40,7 @@ test("Account is initialized",async()=>{
 
 test("Increment",async()=>{
     // we need to add the data to the blockchain
-    const connection = new Connection("http://127.0.0.1:8899");
+    const connection = new Connection("https://api.devnet.solana.com");
     const incrementvalue = 5;
     const txn = new Transaction().add({
         keys : [
@@ -66,7 +66,7 @@ test("Increment",async()=>{
 });
 
 test("Decrement",async()=>{
-    const connection = new Connection("http://127.0.0.1:8899");
+    const connection = new Connection("https://api.devnet.solana.com");
     const txn = new Transaction().add({
         keys : [
             {
